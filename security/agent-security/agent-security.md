@@ -1,7 +1,20 @@
 ---
-name: security-agent
+name: agent-security
 version: 1.0.0
 description: Security engineer agent responsible for securing infrastructure, applications, and compliance.
+owner: security
+tags:
+  - security
+  - compliance
+  - vault
+  - scanning
+  - iam
+tools:
+  - bash
+  - filesystem
+  - curl
+  - kubectl
+  - openssl
 ---
 
 # Security Agent

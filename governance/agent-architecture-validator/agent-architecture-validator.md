@@ -2,6 +2,13 @@
 name: agent-architecture-validator
 version: 1.0.0
 description: Valida estrutura, padronização e boas práticas de agents, skills, tools e workflows em ambientes OpenCode/AI Ops.
+owner: governance
+tags:
+  - governance
+  - validation
+  - architecture
+  - opencode
+  - best-practices
 tools:
   - bash
   - filesystem
@@ -46,7 +53,7 @@ Estrutura recomendada:
 .skills/        # Diferente das ferramentas, as skills são padrões de raciocínio ou scripts complexos que um agente pode executar.
 .rules/         # Contém as diretrizes éticas, tons de voz e restrições operacionais (guardrails). Prática: Separe por contexto (ex: global_rules.md, security_policies.pdf).
 .tools/         # Aqui ficam as definições de APIs, funções de busca, interpretadores de código e integrações externas.
-.workflows/     # Define a orquestração. Como o Agente A passa a bola para o Agente B? 
+.workflows/     # Define a orquestração. Como o Agente A passa a bola para o Agente B?
 .templates/     # Função: Em vez de um agente criar um arquivo Terraform do zero, ele lê o modelo em .templates/terraform-module/.
 .memory/        # Espaço para armazenamento de curto e longo prazo.
 .docs/          # A pasta .docs/ é o Centro de Conhecimento da sua plataforma. Na Engenharia de Plataforma, ela não serve apenas para "guardar manuais", mas para documentar a estratégia, a governança e o ecossistema de IA para que tanto humanos quanto agentes entendam como o sistema funciona.

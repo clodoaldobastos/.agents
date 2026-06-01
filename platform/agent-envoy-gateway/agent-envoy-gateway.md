@@ -1,7 +1,21 @@
 ---
-name: envoy-gateway-agent
+name: agent-envoy-gateway
 version: 1.0.0
 description: Envoy Gateway specialist agent for Gateway API, traffic routing, and service exposure.
+owner: platform-engineering
+tags:
+  - envoy
+  - gateway-api
+  - kubernetes
+  - ingress
+  - service-mesh
+tools:
+  - bash
+  - helm
+  - kubectl
+  - curl
+  - openssl
+  - filesystem
 ---
 
 # Envoy Gateway Agent

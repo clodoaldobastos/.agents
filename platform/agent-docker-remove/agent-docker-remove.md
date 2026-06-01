@@ -1,7 +1,19 @@
 ---
-name: docker-remove-agent
+name: agent-docker-remove
 version: 1.0.0
 description: Docker removal agent for safely uninstalling Docker Engine, purging all containers, images, volumes, and configuration files from any Linux distribution.
+owner: platform-engineering
+tags:
+  - docker
+  - cleanup
+  - containers
+  - linux
+  - uninstall
+tools:
+  - bash
+  - filesystem
+  - systemctl
+  - docker
 ---
 
 # Docker Remove Agent

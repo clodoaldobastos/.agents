@@ -1,7 +1,21 @@
 ---
-name: kubernetes-agent
+name: agent-kubernetes
 version: 1.0.0
 description: Kubernetes specialist agent for kubectl installation, cluster management, workload orchestration, and service mesh operations.
+owner: platform-engineering
+tags:
+  - kubernetes
+  - kubectl
+  - cluster
+  - workload
+  - helm
+tools:
+  - bash
+  - kubectl
+  - helm
+  - curl
+  - filesystem
+  - git
 ---
 
 # Kubernetes Agent

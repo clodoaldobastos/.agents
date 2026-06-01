@@ -1,5 +1,5 @@
 ---
-name: cognitive-platform-validator
+name: agent-cognitive-platform-validator
 version: 1.1.0
 
 description: >

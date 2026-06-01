@@ -1,10 +1,17 @@
 ---
-name: otel-verify-agent
+name: agent-otel-verify
 version: 1.0.0
 description: >
   Agente de verificação de saúde do stack OpenTelemetry. Checa pods,
   endpoints, logs, pipelines OTel e integração entre datasources Grafana.
   Gera relatório detalhado com status de cada componente.
+owner: platform-engineering
+tags:
+  - observability
+  - opentelemetry
+  - verification
+  - kubernetes
+  - monitoring
 tools:
   - bash
   - kubectl

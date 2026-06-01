@@ -1,7 +1,20 @@
 ---
-name: k3s-agent
+name: agent-k3s
 version: 1.0.0
 description: K3s specialist agent for lightweight Kubernetes installation, multi-node cluster setup, and lifecycle management on Linux.
+owner: platform-engineering
+tags:
+  - k3s
+  - kubernetes
+  - lightweight
+  - edge
+  - linux
+tools:
+  - bash
+  - curl
+  - systemctl
+  - filesystem
+  - journalctl
 ---
 
 # K3s Agent

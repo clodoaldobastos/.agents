@@ -1,10 +1,17 @@
 ---
-name: otel-generate-agent
+name: agent-otel-generate
 version: 1.0.0
 description: >
   Agente de teste que faz deploy de uma app Flask instrumentada com OTel SDK
   no cluster, gera tráfego HTTP nos endpoints /api/hello, /api/work, /api/error,
   e valida que métricas, logs e traces chegam nos backends Prometheus, Loki e Tempo.
+owner: platform-engineering
+tags:
+  - observability
+  - opentelemetry
+  - testing
+  - kubernetes
+  - monitoring
 tools:
   - bash
   - docker

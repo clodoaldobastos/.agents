@@ -1,7 +1,21 @@
 ---
-name: kind-agent
+name: agent-kind
 version: 1.0.0
 description: KIND (Kubernetes in Docker) specialist agent for installation, cluster management, and multi-node Kubernetes environments.
+owner: platform-engineering
+tags:
+  - kind
+  - kubernetes
+  - docker
+  - testing
+  - local
+tools:
+  - bash
+  - docker
+  - kubectl
+  - curl
+  - jq
+  - filesystem
 ---
 
 # KIND Agent

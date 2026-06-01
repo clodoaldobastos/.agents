@@ -1,9 +1,16 @@
 ---
-name: otel-deploy-agent
+name: agent-otel-deploy
 version: 1.0.0
 description: >
   Deploy completo do stack OpenTelemetry no cluster Kubernetes via Helm chart.
   Executa helm install com validação de cada componente pós-deploy.
+owner: platform-engineering
+tags:
+  - observability
+  - opentelemetry
+  - kubernetes
+  - monitoring
+  - helm
 tools:
   - bash
   - helm

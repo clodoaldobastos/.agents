@@ -1,7 +1,20 @@
 ---
-name: architect-agent
+name: agent-architect
 version: 1.0.0
 description: Cloud architect agent responsible for system design, technology selection, and architectural decisions.
+owner: platform-engineering
+tags:
+  - architecture
+  - cloud
+  - terraform
+  - iac
+  - system-design
+tools:
+  - terraform
+  - bash
+  - filesystem
+  - curl
+  - git
 ---
 
 # Architect Agent

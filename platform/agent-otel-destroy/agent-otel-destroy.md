@@ -1,10 +1,17 @@
 ---
-name: otel-destroy-agent
+name: agent-otel-destroy
 version: 1.0.0
 description: >
   Agente de remoção segura do stack OpenTelemetry via Helm. Executa dry-run
   primeiro (helm template), lista recursos, solicita confirmação e executa
   helm uninstall.
+owner: platform-engineering
+tags:
+  - observability
+  - opentelemetry
+  - kubernetes
+  - cleanup
+  - helm
 tools:
   - bash
   - helm

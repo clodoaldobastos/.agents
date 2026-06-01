@@ -1,7 +1,20 @@
 ---
-name: docker-agent
+name: agent-docker
 version: 1.0.0
 description: Docker specialist agent for installation, configuration, and lifecycle management of Docker Engine across Linux distributions.
+owner: platform-engineering
+tags:
+  - docker
+  - containers
+  - linux
+  - devops
+  - installation
+tools:
+  - bash
+  - filesystem
+  - curl
+  - systemctl
+  - docker
 ---
 
 # Docker Agent

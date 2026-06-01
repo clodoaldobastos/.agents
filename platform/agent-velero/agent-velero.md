@@ -1,7 +1,21 @@
 ---
-name: velero-agent
+name: agent-velero
 version: 1.0.0
 description: Velero specialist agent for Kubernetes backup, restore, and disaster recovery.
+owner: platform-engineering
+tags:
+  - velero
+  - backup
+  - restore
+  - kubernetes
+  - disaster-recovery
+tools:
+  - bash
+  - kubectl
+  - helm
+  - curl
+  - jq
+  - filesystem
 ---
 
 # Velero Agent

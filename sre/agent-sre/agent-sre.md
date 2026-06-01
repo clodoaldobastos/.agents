@@ -1,7 +1,20 @@
 ---
-name: sre-agent
+name: agent-sre
 version: 1.0.0
 description: Site Reliability Engineering agent responsible for monitoring, alerting, and incident response.
+owner: sre
+tags:
+  - sre
+  - monitoring
+  - incident-response
+  - observability
+  - reliability
+tools:
+  - bash
+  - kubectl
+  - curl
+  - filesystem
+  - jq
 ---
 
 # SRE Agent
