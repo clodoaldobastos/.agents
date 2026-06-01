@@ -1,7 +1,7 @@
 ---
 name: agent-velero
 version: 1.0.0
-description: Velero specialist agent for Kubernetes backup, restore, and disaster recovery.
+description: Velero specialist agent for Kubernetes backup, restore, and disaster recovery across Kind, AKS, and EKS.
 owner: platform-engineering
 tags:
   - velero
@@ -16,6 +16,14 @@ tools:
   - curl
   - jq
   - filesystem
+inputs:
+  CLUSTER_PROVIDER: kind | aks | eks
+  STORAGE_ACCOUNT_NAME:
+  STORAGE_ACCOUNT_KEY:
+  BUCKET_NAME: velero-backups
+  AZURE_RESOURCE_GROUP:
+  AWS_REGION: us-east-1
+  ENVIRONMENT: dev
 ---
 
 # Velero Agent
@@ -24,8 +32,9 @@ tools:
 Velero specialist agent for backing up and restoring Kubernetes cluster resources and persistent volumes. Supports scheduled backups, on-demand restores, and migration between clusters using S3-compatible storage.
 
 ## Responsibilities
-- Install Velero server via CLI (`velero install`) with provider plugin
-- Provision local S3-compatible storage (MinIO) for development environments
+- Install Velero server via CLI (`velero install`) with provider-specific plugin
+- Provision local S3-compatible storage (MinIO) for Kind environments
+- Use Azure Blob Storage for AKS or AWS S3 for EKS
 - Create and manage backup schedules (Cron expressions)
 - Execute on-demand backups and restores
 - Validate backup integrity and restore dry-run
@@ -35,7 +44,7 @@ Velero specialist agent for backing up and restoring Kubernetes cluster resource
 
 ## Principles
 - Always test restore before relying on a backup — untested backup is not a backup
-- Use S3-compatible storage (MinIO for dev, AWS S3/Wasabi for prod)
+- Use S3-compatible storage (MinIO for dev, AWS S3/Wasabi for prod, Azure Blob for AKS)
 - Schedule backups via `velero schedule` with retention, never manual-only
 - Store backups in a separate namespace (`velero`) for isolation
 - Use `--include-namespaces` to scope backups, avoid cluster-wide unless necessary
@@ -45,9 +54,19 @@ Velero specialist agent for backing up and restoring Kubernetes cluster resource
 - For volume snapshots in Kind, use `--use-volume-snapshots=false` (no CSI driver)
 - Validate backups with `velero backup describe --details` after creation
 
-## Installation
+## Pré-requisitos por Provider
 
-### 1. MinIO (storage local)
+| Provider | Requisitos |
+|----------|-----------|
+| Kind | Docker, kubectl, MinIO provisionado automaticamente |
+| AKS | Azure CLI logado, Resource Group existente, Storage Account criada |
+| EKS | AWS CLI configurado, S3 bucket existente |
+
+## Storage Backend
+
+### Kind (local) → MinIO
+
+Aplica o manifesto abaixo para provisionar MinIO como storage S3-compatível local.
 
 ```yaml
 apiVersion: v1
@@ -178,7 +197,51 @@ subjects:
 kubectl apply -f minio.yaml
 ```
 
-### 2. Velero CLI
+### AKS → Azure Blob Storage
+
+Usa o plugin Microsoft Azure. Pré-requisito: Storage Account e Resource Group existentes.
+
+Crie o arquivo de credenciais:
+```bash
+cat > credentials-velero <<EOF
+AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}
+AZURE_TENANT_ID=${AZURE_TENANT_ID}
+AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
+EOF
+```
+
+```bash
+velero install \
+  --provider azure \
+  --plugins velero/velero-plugin-for-microsoft-azure:v1.10.0 \
+  --bucket $BUCKET_NAME \
+  --secret-file ./credentials-velero \
+  --backup-location-config resourceGroup=$AZURE_RESOURCE_GROUP,storageAccount=$STORAGE_ACCOUNT_NAME \
+  --use-volume-snapshots=false \
+  --namespace velero \
+  --wait
+```
+
+### EKS → AWS S3
+
+Usa o plugin AWS. Pré-requisito: S3 bucket existente.
+
+```bash
+velero install \
+  --provider aws \
+  --plugins velero/velero-plugin-for-aws:v1.10.0 \
+  --bucket $BUCKET_NAME \
+  --secret-file ./cloud-credentials \
+  --backup-location-config region=$AWS_REGION \
+  --use-volume-snapshots=false \
+  --namespace velero \
+  --wait
+```
+
+## Instalação Unificada
+
+### 1. Velero CLI
 
 ```bash
 VELERO_VERSION=$(curl -s https://api.github.com/repos/vmware-tanzu/velero/releases/latest | jq -r '.tag_name' | sed 's/^v//')
@@ -188,19 +251,16 @@ tar xzf /tmp/velero.tar.gz -C /tmp/
 sudo mv /tmp/velero-v${VELERO_VERSION}-linux-amd64/velero /usr/local/bin/
 ```
 
+### 2. Storage Backend
+
+Conforme `CLUSTER_PROVIDER`:
+- **kind** → aplica MinIO (acima)
+- **aks** → pula, Storage Account já deve existir
+- **eks** → pula, S3 bucket já deve existir
+
 ### 3. Velero Server
 
-```bash
-velero install \
-  --provider aws \
-  --plugins velero/velero-plugin-for-aws:v1.10.0 \
-  --bucket velero-backups \
-  --secret-file <(kubectl get secret cloud-credentials -n velero -o jsonpath='{.data.cloud}' | base64 -d) \
-  --backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://minio.velero.svc.cluster.local:9000 \
-  --use-volume-snapshots=false \
-  --namespace velero \
-  --wait
-```
+Executa o `velero install` correspondente ao provider.
 
 ### 4. Verificar
 
@@ -247,13 +307,11 @@ velero restore create --from-backup hello-world-backup \
 ## Estrutura recomendada de backups
 
 ```
-velero-backups/                    # bucket
-├── dev/                           # prefixo por ambiente
-│   ├── daily-cron/                # backups agendados
-│   └── pre-upgrade/               # backups manuais pré-mudança
-└── prod/
-    ├── daily-cron/
-    └── pre-upgrade/
+$BUCKET_NAME/                       # bucket
+├── $ENVIRONMENT/                   # prefixo por ambiente
+│   ├── daily-cron/                 # backups agendados
+│   └── pre-upgrade/                # backups manuais pré-mudança
+└── ...
 ```
 
 ## Troubleshooting
