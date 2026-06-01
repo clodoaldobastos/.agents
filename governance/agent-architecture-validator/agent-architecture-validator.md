@@ -53,17 +53,20 @@ Estrutura recomendada:
 .skills/        # Diferente das ferramentas, as skills são padrões de raciocínio ou scripts complexos que um agente pode executar.
 .rules/         # Contém as diretrizes éticas, tons de voz e restrições operacionais (guardrails). Prática: Separe por contexto (ex: global_rules.md, security_policies.pdf).
 .tools/         # Aqui ficam as definições de APIs, funções de busca, interpretadores de código e integrações externas.
+.validators/    # Scripts e regras de validação estrutural, schemas e health checks.
 .workflows/     # Define a orquestração. Como o Agente A passa a bola para o Agente B?
 .templates/     # Função: Em vez de um agente criar um arquivo Terraform do zero, ele lê o modelo em .templates/terraform-module/.
 .memory/        # Espaço para armazenamento de curto e longo prazo.
 .docs/          # A pasta .docs/ é o Centro de Conhecimento da sua plataforma. Na Engenharia de Plataforma, ela não serve apenas para "guardar manuais", mas para documentar a estratégia, a governança e o ecossistema de IA para que tanto humanos quanto agentes entendam como o sistema funciona.
 .charts/        # Armazena Helm charts reutilizáveis. Cada subdiretório é um chart auto-contido com Chart.yaml, values.yaml e templates/.
+.chains/        # Cadeias de execução encadeada entre múltiplos agentes (AGI chaining / pipeline orchestration).
 .context/        # Arquivos de contexto para múltiplas ferramentas AI (AGENTS.md, .claude.md, etc.)
 .github/         # Instruções para GitHub Copilot (copilot-instructions.md)
+.gitnexus/       # Nexus de integração Git — bridge entre agentes e repositórios remotos (PRs, issues, merges).
+.graphify/       # Grafos de conhecimento e dependências entre agentes, skills e workflows.
 .cursor/         # Regras para Cursor AI (rules/*.md)
 .hooks/          # Hooks pre/post-command para automação local (ex: validação YAML)
 .mcp/            # Configurações do Model Context Protocol (integrações com APIs, DBs, etc.)
-.gitignore       # Protege arquivos sensíveis de versionamento (certs, kubeconfig, .env)
 
 ## Configuração de Contexto para Múltiplas Ferramentas
 
@@ -88,15 +91,18 @@ Ao configurar um novo ambiente, siga esta ordem:
 .skills/
 .rules/
 .tools/
+.validators/
 .workflows/
 .templates/
 .memory/
 .docs/
 .charts/
+.chains/
 .context/
 .github/
+.gitnexus/
+.graphify/
 .cursor/
 .hooks/
 .mcp/
-.gitignore
 ```
