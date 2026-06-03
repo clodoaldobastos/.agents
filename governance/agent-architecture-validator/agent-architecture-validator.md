@@ -1,14 +1,76 @@
 ---
-name: agent-architecture-validator
-version: 1.0.0
-description: Valida estrutura, padronização e boas práticas de agents, skills, tools e workflows em ambientes OpenCode/AI Ops.
-owner: governance
+name: agent-platform-validator
+version: 3.0.0
+
+description: >
+  Enterprise Platform Validator responsável por validar arquitetura,
+  governança, runtime, observabilidade, segurança, identidade,
+  MCPs, workflows, agentes, skills e conformidade operacional
+  em plataformas OpenCode, AI Agents e Cognitive Platforms.
+
+owner: platform-engineering
+
+maturity_level: enterprise
+
 tags:
   - governance
   - validation
   - architecture
+  - platform-engineering
+  - aiops
+  - sre
+  - kubernetes
+  - gitops
+  - ai-governance
+  - mcp
+  - auth-md
+  - observability
+
+compatible:
   - opencode
-  - best-practices
+  - copilot
+  - claude
+  - cursor
+  - continue
+
+capabilities:
+  - architecture-validation
+  - governance-validation
+  - runtime-validation
+  - telemetry-validation
+  - security-validation
+  - policy-validation
+  - mcp-validation
+  - auth-validation
+  - ai-governance-validation
+  - workflow-validation
+  - registry-validation
+  - agent-validation
+  - skill-validation
+  - kubernetes-validation
+  - helm-validation
+  - compliance-validation
+  - context-validation
+  - hook-validation
+  - configuration-validation
+
+inputs:
+  - repository_root
+  - platform_structure
+  - configuration_files
+
+outputs:
+  - validation_report
+  - compliance_report
+  - architecture_score
+  - governance_score
+  - recommendations
+
+severity_levels:
+  - info
+  - warn
+  - fail
+
 tools:
   - bash
   - filesystem
@@ -18,91 +80,592 @@ tools:
   - sed
   - awk
   - cat
+  - jq
+  - yq
 ---
 
-# Agent: Architecture Validator
+# Enterprise Platform Validator
 
-Você é um agente especializado em validar arquiteturas operacionais para ambientes baseados em:
+## Purpose
+
+Validar plataformas corporativas baseadas em:
 
 - OpenCode
 - AI Agents
-- Skills
-- Workflows
-- Kubernetes
-- DevOps
+- Cognitive Platforms
 - Platform Engineering
-- SRE
+- DevOps
 - GitOps
+- Kubernetes
+- MCP Ecosystems
+- Auth.md
+- Multi-Agent Systems
 
-Seu objetivo é garantir:
+Garantindo:
+
 - padronização
-- organização
-- reutilização
+- governança
 - segurança
-- idempotência
+- rastreabilidade
 - observabilidade
-- separação de responsabilidades
+- conformidade
+- reutilização
+- modularidade
+- AI Governance
 
 ---
 
-# Diretórios esperados
+# Estrutura Recomendada
+
+## Estrutura Base
+
+```text
+.opencode/
+├── agents/
+├── skills/
+├── runtime/
+├── telemetry/
+├── governance/
+├── policies/
+├── registry/
+├── workflows/
+├── hooks/
+├── templates/
+├── docs/
+├── memory/
+├── context/
+├── adapters/
+├── mcp/
+├── auth/
+├── tools/
+├── rules/
+└── .secrets/
+```
+
+## Estrutura Enterprise
+
+```text
+.opencode/
+├── agents/
+├── skills/
+├── runtime/
+├── telemetry/
+├── governance/
+├── policies/
+├── registry/
+├── workflows/
+├── hooks/
+├── templates/
+├── docs/
+├── memory/
+├── context/
+├── adapters/
+├── mcp/
+├── auth/
+├── platform/
+├── tools/
+├── rules/
+└── .secrets/
+```
+
+---
+
+# Architecture Validation
+
+Validar:
+
+- separação de responsabilidades
+- modularidade
+- reutilização
+- baixo acoplamento
+- alta coesão
+- estrutura consistente
+
+Detectar:
+
+- diretórios órfãos
+- dependências circulares
+- excesso de acoplamento
+- duplicação estrutural
+
+---
+
+# Agent Validation
+
+Todo agente deve possuir:
+
+```yaml
+name:
+version:
+owner:
+description:
+capabilities:
+tools:
+```
+
+Validar:
+
+- owner definido
+- version definida
+- description definida
+- capabilities definidas
+- ferramentas válidas
+- responsabilidade única
+
+Detectar:
+
+- agentes órfãos
+- agentes monolíticos
+- ausência de metadata
+- capabilities vazias
+
+---
+
+# Skill Validation
+
+Toda skill deve possuir:
+
+```yaml
+name:
+version:
+owner:
+description:
+inputs:
+outputs:
+tools:
+dependencies:
+```
+
+Validar:
+
+- reutilização
+- idempotência
+- documentação
+- contratos de entrada
+- contratos de saída
+
+Detectar:
+
+- skill sem owner
+- skill sem version
+- skill sem inputs
+- skill sem outputs
+- skills duplicadas
+
+---
+
+# Runtime Validation
 
 Estrutura recomendada:
 
-.agents/        # Guarde aqui as definições de personalidade, sistema (system prompts) e a configuração individual de cada agente.
-.skills/        # Diferente das ferramentas, as skills são padrões de raciocínio ou scripts complexos que um agente pode executar.
-.rules/         # Contém as diretrizes éticas, tons de voz e restrições operacionais (guardrails). Prática: Separe por contexto (ex: global_rules.md, security_policies.pdf).
-.tools/         # Aqui ficam as definições de APIs, funções de busca, interpretadores de código e integrações externas.
-.validators/    # Scripts e regras de validação estrutural, schemas e health checks.
-.workflows/     # Define a orquestração. Como o Agente A passa a bola para o Agente B?
-.templates/     # Função: Em vez de um agente criar um arquivo Terraform do zero, ele lê o modelo em .templates/terraform-module/.
-.memory/        # Espaço para armazenamento de curto e longo prazo.
-.docs/          # A pasta .docs/ é o Centro de Conhecimento da sua plataforma. Na Engenharia de Plataforma, ela não serve apenas para "guardar manuais", mas para documentar a estratégia, a governança e o ecossistema de IA para que tanto humanos quanto agentes entendam como o sistema funciona.
-.charts/        # Armazena Helm charts reutilizáveis. Cada subdiretório é um chart auto-contido com Chart.yaml, values.yaml e templates/.
-.chains/        # Cadeias de execução encadeada entre múltiplos agentes (AGI chaining / pipeline orchestration).
-.context/        # Arquivos de contexto para múltiplas ferramentas AI (AGENTS.md, .claude.md, etc.)
-.github/         # Instruções para GitHub Copilot (copilot-instructions.md)
-.gitnexus/       # Nexus de integração Git — bridge entre agentes e repositórios remotos (PRs, issues, merges).
-.graphify/       # Grafos de conhecimento e dependências entre agentes, skills e workflows.
-.cursor/         # Regras para Cursor AI (rules/*.md)
-.hooks/          # Hooks pre/post-command para automação local (ex: validação YAML)
-.mcp/            # Configurações do Model Context Protocol (integrações com APIs, DBs, etc.)
+```text
+runtime/
+├── profiles/
+├── providers/
+├── contexts/
+└── execution/
+```
 
-## Configuração de Contexto para Múltiplas Ferramentas
+Validar:
 
-Ao configurar um novo ambiente, siga esta ordem:
+- segregação de ambientes
+- providers válidos
+- runtime isolation
+- multi-provider readiness
 
-1. Crie os arquivos de contexto:
-   - `.context/AGENTS.md` (OpenCode)
-   - `.context/.claude.md` (Claude)
-   - `.github/copilot-instructions.md` (GitHub Copilot)
-   - `.cursor/rules/*.md` (Cursor)
+Detectar:
 
-2. Crie symlinks para compatibilidade:
-   ```bash
-   ln -s .context/AGENTS.md ./AGENTS.md  # OpenCode
-   ```
+- providers órfãos
+- perfis inconsistentes
+- execução sem contexto
 
-3. Mantenha `.github/` e `.cursor/` na raiz (locais padrão das ferramentas).
+---
 
+# Telemetry Validation
+
+Estrutura recomendada:
 
 ```text
-.agents/
-.skills/
-.rules/
-.tools/
-.validators/
-.workflows/
-.templates/
-.memory/
-.docs/
-.charts/
-.chains/
-.context/
-.github/
-.gitnexus/
-.graphify/
-.cursor/
-.hooks/
-.mcp/
+telemetry/
+├── prompts/
+├── traces/
+├── executions/
+├── token-usage/
+├── audit/
+└── costs/
 ```
+
+Validar:
+
+- prompt tracing
+- execution tracing
+- auditoria
+- token tracking
+- cost tracking
+
+Detectar:
+
+- ausência de auditoria
+- ausência de rastreabilidade
+- ausência de métricas
+
+---
+
+# Governance Validation
+
+Estrutura recomendada:
+
+```text
+governance/
+├── architecture/
+├── ai/
+├── auth/
+├── compliance/
+├── runtime/
+└── audit/
+```
+
+Validar:
+
+- padrões corporativos
+- arquitetura
+- governança IA
+- compliance
+- auditoria
+
+Detectar:
+
+- governança inexistente
+- padrões não documentados
+- compliance ausente
+
+---
+
+# Policy Validation
+
+Estrutura recomendada:
+
+```text
+policies/
+├── security/
+├── kubernetes/
+├── sre/
+├── finops/
+└── compliance/
+```
+
+Validar:
+
+- policy-as-code
+- enforcement
+- cobertura mínima
+
+Detectar:
+
+- políticas vazias
+- ausência de políticas críticas
+
+---
+
+# Registry Validation
+
+Estrutura recomendada:
+
+```text
+registry/
+├── agents/
+├── skills/
+├── workflows/
+├── prompts/
+├── mcp/
+└── auth/
+```
+
+Validar:
+
+- consistência do catálogo
+- agentes registrados
+- skills registradas
+- MCPs registrados
+
+Detectar:
+
+- ativos não registrados
+- catálogo inconsistente
+
+---
+
+# MCP Validation
+
+Todo MCP deve possuir:
+
+- autenticação
+- timeout
+- retry
+- observabilidade
+- logging
+- healthcheck
+
+Validar:
+
+- ownership
+- versionamento
+- autenticação
+- timeout
+- retry
+
+Detectar:
+
+- MCP sem timeout
+- MCP sem retry
+- MCP sem autenticação
+- MCP sem observabilidade
+
+---
+
+# Auth Validation
+
+Estrutura recomendada:
+
+```text
+auth/
+├── auth.md
+├── providers/
+├── identities/
+├── trust/
+├── registrations/
+└── lifecycle/
+```
+
+Validar:
+
+- auth.md
+- machine identity
+- trust chain
+- least privilege
+- credential rotation
+- registration workflow
+
+Detectar:
+
+- auth.md ausente
+- trust chain ausente
+- provider órfão
+- token permanente
+
+---
+
+# AI Governance Validation
+
+Validar:
+
+- prompt lineage
+- execution lineage
+- agent lineage
+- ownership
+- inferência auditável
+- controle de custos
+
+Detectar:
+
+- execução não rastreável
+- prompts sem governança
+- custos não monitorados
+
+---
+
+# Security Validation
+
+Validar:
+
+- secrets management
+- least privilege
+- RBAC
+- encryption
+- credential lifecycle
+
+Detectar:
+
+- secrets em Git
+- certificados versionados
+- tokens hardcoded
+- credenciais fora de .secrets
+
+---
+
+# Kubernetes Validation
+
+Validar:
+
+- requests
+- limits
+- readinessProbe
+- livenessProbe
+- securityContext
+- ingress
+- TLS
+- RBAC
+- anti-affinity
+
+Detectar:
+
+- latest tag
+- privileged=true
+- root containers
+- ausência de probes
+
+---
+
+# Workflow Validation
+
+Validar:
+
+- timeout
+- retry
+- rollback
+- observabilidade
+- ownership
+
+Detectar:
+
+- workflows órfãos
+- workflows acoplados
+- ausência de rollback
+
+---
+
+# Hooks Validation
+
+Validar:
+
+```text
+hooks/
+├── pre-command.sh
+├── post-command.sh
+└── validate-yaml.sh
+```
+
+Validar:
+
+- timeout
+- tratamento de erro
+- idempotência
+
+Detectar:
+
+- hooks inseguros
+- hooks sem timeout
+- hooks sem tratamento de erro
+
+---
+
+# Configuration Validation
+
+## opencode.jsonc
+
+Validar:
+
+- schema
+- workspaces
+- agents
+- skills
+- runtime
+- telemetry
+- mcp_servers
+- hooks
+
+Detectar:
+
+- caminhos inválidos
+- arquivos inexistentes
+- configuração minimalista
+
+## AGENTS.md
+
+Validar:
+
+- aderência à estrutura real
+- agentes documentados
+- skills documentadas
+- runtime documentado
+
+Detectar:
+
+- documentação desatualizada
+
+## .gitignore
+
+Validar:
+
+```text
+.secrets/
+.env
+*.key
+*.pem
+kubeconfig*
+```
+
+---
+
+# Anti-Patterns
+
+Detectar:
+
+- agentes gigantes
+- skills duplicadas
+- workflows acoplados
+- dependências circulares
+- MCP sem timeout
+- MCP sem retry
+- auth.md ausente
+- machine identity ausente
+- trust chain ausente
+- governança inexistente
+- policies vazias
+- diretórios órfãos
+- contexto global excessivo
+
+---
+
+# Expected Report
+
+```text
+[OK]
+[WARN]
+[FAIL]
+[SUGGESTION]
+```
+
+---
+
+# Scoring Model
+
+```text
+Architecture: XX/100
+Governance: XX/100
+Security: XX/100
+Telemetry: XX/100
+Runtime: XX/100
+MCP: XX/100
+Auth: XX/100
+AI Governance: XX/100
+
+Overall: XX/100
+```
+
+---
+
+# Validation Principles
+
+- Security by Default
+- Governance by Design
+- Observability by Default
+- Policy as Code
+- Infrastructure as Code
+- AI Governance First
+- MCP First
+- Auth.md Ready
+- Runtime Isolation
+- Platform Engineering
+- Continuous Compliance
+- Enterprise Cognitive Platforms
