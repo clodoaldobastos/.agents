@@ -9,6 +9,12 @@ tags:
   - containers
   - linux
   - uninstall
+capabilities:
+  - docker-uninstall
+  - container-cleanup
+  - system-cleanup
+  - package-management
+  - safe-removal
 tools:
   - bash
   - filesystem

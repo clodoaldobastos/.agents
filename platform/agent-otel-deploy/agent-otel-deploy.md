@@ -11,6 +11,12 @@ tags:
   - kubernetes
   - monitoring
   - helm
+capabilities:
+  - helm-deploy
+  - opentelemetry-installation
+  - kubernetes-deployment
+  - monitoring-stack
+  - post-deploy-validation
 tools:
   - bash
   - helm

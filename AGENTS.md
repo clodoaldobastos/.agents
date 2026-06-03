@@ -6,7 +6,7 @@
 ## Platform
 
 ### Architecture
-- [agent-architect](platform/agent-architect/agent-architect.md) — Cloud architect for system design, technology selection, and architectural decisions.
+- [agent-cognitive-platform-architect](platform/agent-cognitive-platform-architect/agent-cognitive-platform-architect.md) — Enterprise Cognitive Platform Architect for system design, technology selection, and architectural decisions.
 - [agent-cognitive-platform-validator](platform/agent-cognitive-platform-validator/agent-cognitive-platform-validator.md) — Valida arquitetura, governança, runtime, observabilidade, segurança e padronização de plataformas AI Ops.
 
 ### Container & Runtime

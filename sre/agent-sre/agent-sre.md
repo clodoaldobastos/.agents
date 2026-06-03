@@ -9,6 +9,13 @@ tags:
   - incident-response
   - observability
   - reliability
+capabilities:
+  - monitoring
+  - alerting
+  - incident-response
+  - slo-management
+  - observability
+  - runbook-automation
 tools:
   - bash
   - kubectl

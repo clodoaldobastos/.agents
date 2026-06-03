@@ -12,6 +12,12 @@ tags:
   - verification
   - kubernetes
   - monitoring
+capabilities:
+  - health-check
+  - opentelemetry-verification
+  - kubernetes-verification
+  - monitoring
+  - report-generation
 tools:
   - bash
   - kubectl

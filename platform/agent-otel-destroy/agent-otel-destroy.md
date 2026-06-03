@@ -12,6 +12,12 @@ tags:
   - kubernetes
   - cleanup
   - helm
+capabilities:
+  - helm-uninstall
+  - resource-cleanup
+  - opentelemetry-removal
+  - dry-run
+  - confirmation-workflow
 tools:
   - bash
   - helm

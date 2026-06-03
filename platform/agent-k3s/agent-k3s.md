@@ -9,6 +9,13 @@ tags:
   - lightweight
   - edge
   - linux
+capabilities:
+  - k3s-installation
+  - multi-node-cluster
+  - lightweight-kubernetes
+  - systemd-management
+  - edge-computing
+  - cluster-lifecycle
 tools:
   - bash
   - curl

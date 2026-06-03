@@ -9,6 +9,13 @@ tags:
   - vault
   - scanning
   - iam
+capabilities:
+  - vulnerability-scanning
+  - secrets-management
+  - compliance-auditing
+  - iam
+  - network-security
+  - container-security
 tools:
   - bash
   - filesystem

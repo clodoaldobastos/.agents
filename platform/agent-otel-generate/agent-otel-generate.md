@@ -12,6 +12,12 @@ tags:
   - testing
   - kubernetes
   - monitoring
+capabilities:
+  - flask-deployment
+  - telemetry-generation
+  - opentelemetry-instrumentation
+  - traffic-generation
+  - validation
 tools:
   - bash
   - docker

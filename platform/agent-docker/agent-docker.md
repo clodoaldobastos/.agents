@@ -9,6 +9,12 @@ tags:
   - linux
   - devops
   - installation
+capabilities:
+  - docker-installation
+  - container-management
+  - docker-configuration
+  - docker-lifecycle
+  - os-detection
 tools:
   - bash
   - filesystem

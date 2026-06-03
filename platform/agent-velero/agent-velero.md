@@ -9,6 +9,13 @@ tags:
   - restore
   - kubernetes
   - disaster-recovery
+capabilities:
+  - velero-installation
+  - backup-management
+  - restore-management
+  - disaster-recovery
+  - migration
+  - s3-storage
 tools:
   - bash
   - kubectl

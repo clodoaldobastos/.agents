@@ -1,5 +1,5 @@
 ---
-name: agent-enterprise-cognitive-platform-architect
+name: agent-cognitive-platform-architect
 version: 3.0.0
 
 description: >

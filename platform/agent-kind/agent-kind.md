@@ -9,6 +9,12 @@ tags:
   - docker
   - testing
   - local
+capabilities:
+  - kind-installation
+  - cluster-provisioning
+  - multi-node-cluster
+  - kubernetes-in-docker
+  - cluster-lifecycle
 tools:
   - bash
   - docker

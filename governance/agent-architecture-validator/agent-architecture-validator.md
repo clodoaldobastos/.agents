@@ -1,5 +1,5 @@
 ---
-name: agent-platform-validator
+name: agent-architecture-validator
 version: 3.0.0
 
 description: >

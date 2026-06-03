@@ -9,6 +9,13 @@ tags:
   - kubernetes
   - ingress
   - service-mesh
+capabilities:
+  - envoy-installation
+  - gateway-api
+  - traffic-routing
+  - service-exposure
+  - tls-certificate
+  - mtls
 tools:
   - bash
   - helm

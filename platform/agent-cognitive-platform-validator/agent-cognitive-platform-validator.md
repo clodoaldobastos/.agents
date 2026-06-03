@@ -1,21 +1,5 @@
 ---
 name: agent-cognitive-platform-validator
-version: 1.1.0
-
-description: >
-  Valida arquitetura, governança, runtime,
-  observabilidade, segurança e padronização
-  de plataformas AI Ops/OpenCode baseadas
-  em agentes, workflows, MCPs e operações cognitivas.
-
-owner: platform-engineering
-
-tags:
-  - aiops
-  - sre
-  - governance
-  - platform-engineering---
-name: agent-cognitive-platform-validator
 version: 2.0.0
 
 description: >

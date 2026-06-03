@@ -9,6 +9,14 @@ tags:
   - cluster
   - workload
   - helm
+capabilities:
+  - kubernetes-management
+  - kubectl-installation
+  - cluster-management
+  - workload-orchestration
+  - helm-chart-management
+  - service-mesh
+  - troubleshooting
 tools:
   - bash
   - kubectl
