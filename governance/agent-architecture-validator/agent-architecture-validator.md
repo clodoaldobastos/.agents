@@ -71,15 +71,28 @@ severity_levels:
   - warn
   - fail
 
+dependencies: []
+
+quality_gates:
+  - structure_validated
+  - security_reviewed
+  - governance_validated
+  - compliance_reviewed
+  - mcp_validated
+  - auth_validated
+
+sla:
+  availability: 99.9
+
+review_cycle:
+  validation: monthly
+
 tools:
   - bash
   - filesystem
   - git
   - grep
   - find
-  - sed
-  - awk
-  - cat
   - jq
   - yq
 ---

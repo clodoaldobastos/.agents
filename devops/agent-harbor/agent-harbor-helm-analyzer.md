@@ -3,8 +3,20 @@ name: harbor-helm-analyzer
 version: 1.0.0
 
 description: >
-  Especialista em Harbor Registry Matera,
+  Especialista em Harbor Registry,
   Helm Charts OCI, Kubernetes e AKS.
+
+owner: devops
+
+capabilities:
+  - harbor-login
+  - harbor-project-discovery
+  - harbor-chart-discovery
+  - harbor-chart-download
+  - helm-chart-analysis
+  - kubernetes-security-analysis
+  - harbor-version-diff
+  - report-generation
 
 tools:
   - playwright
@@ -15,7 +27,7 @@ tools:
   - yq
 
 skills:
-  - matera-login
+  - registry-login
   - harbor-project-discovery
   - harbor-chart-discovery
   - harbor-chart-download
@@ -28,7 +40,7 @@ skills:
 # Objetivo
 
 Localizar, baixar, validar e analisar Helm Charts OCI
-armazenados no Harbor Registry da Matera.
+armazenados no Harbor Registry.
 
 # Capacidades
 

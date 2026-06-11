@@ -1,6 +1,6 @@
 ---
 name: agent-cognitive-platform-validator
-version: 2.0.0
+version: 3.0.0
 
 description: >
   Enterprise Cognitive Platform Validator responsável por validar
@@ -9,6 +9,20 @@ description: >
   em plataformas OpenCode, AI Agents e operações cognitivas.
 
 owner: platform-engineering
+
+maturity_level: enterprise
+
+inputs:
+  - repository_root
+  - platform_structure
+  - configuration_files
+
+outputs:
+  - validation_report
+  - compliance_report
+  - architecture_score
+  - governance_score
+  - recommendations
 
 tags:
   - aiops
@@ -647,44 +661,6 @@ A plataforma deve seguir:
 - Runtime Multi-Provider
 - Observabilidade Cognitiva
 - Machine-to-Machine Trust
-  - kubernetes
-  - observability
-  - gitops
-  - mcp
-
-compatible:
-  - opencode
-  - copilot
-  - claude
-  - cursor
-  - continue
-
-capabilities:
-  - architecture-validation
-  - governance-validation
-  - runtime-validation
-  - telemetry-validation
-  - kubernetes-validation
-  - helm-validation
-  - policy-validation
-  - mcp-validation
-  - security-validation
-  - hook-validation
-  - context-validation
-  - config-validation
-
-tools:
-  - bash
-  - filesystem
-  - git
-  - grep
-  - find
-  - sed
-  - awk
-  - cat
-  - jq
-  - yq
----
 
 # Agent: Cognitive Platform Validator
 
