@@ -1,6 +1,7 @@
 # AI Agents Platform
 
 ## Governance
+- [agent-ai-engineering](governance/agent-AI-Engineering/agent-aI-engineering.md) — Proposta de arquitetura Enterprise AI Platform v2 com agentes autônomos, MCP, RAG, AI Ops e Platform Engineering.
 - [agent-architecture-validator](governance/agent-architecture-validator/agent-architecture-validator.md) — Valida estrutura, padronização e boas práticas de agents, skills, tools e workflows.
 
 ## Platform
@@ -27,6 +28,9 @@
 - [agent-otel-destroy](platform/agent-otel-destroy/agent-otel-destroy.md) — Safely remove OpenTelemetry stack via Helm.
 - [agent-otel-generate](platform/agent-otel-generate/agent-otel-generate.md) — Test agent that deploys Flask app with OTel SDK and generates traffic.
 - [agent-otel-verify](platform/agent-otel-verify/agent-otel-verify.md) — Health verification agent for OpenTelemetry stack.
+
+## Matera
+- [matera-analise-versao](matera/agent-analise-versao/agent-analise-versao.md) — Analisa conformidade de YAMLs locais contra charts do Harbor e documentação técnica.
 
 ## Security
 - [agent-security](security/agent-security/agent-security.md) — Security engineer for infrastructure, applications, and compliance.
